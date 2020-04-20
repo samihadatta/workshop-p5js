@@ -14,6 +14,8 @@ No downloading necessary! Told you - minimal setup.
 
 ## Step by Step
 
+### The Basics
+
 1. Let us start with the boilerplate code. In your project root directory, create `index.html` with the following content:
 
 	```html
@@ -50,23 +52,33 @@ No downloading necessary! Told you - minimal setup.
 1. I know, I know: circles are boring. Let's make the users draw them for us instead. Let's put the following in `sketch.js`.
 
 	```javascript
+	const WINDOW_WIDTH = 1000;
+	const WINDOW_HEIGHT = 500;
+
 	function setup() {
-	  createCanvas(1000, 500);
+	  createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT);
 	}
-	
+
 	function draw() {
 	  if (mouseIsPressed) {
 		ellipse(mouseX, mouseY, 80, 80);
 	  }
 	}
-	
 	```
 	
 	Refresh your page and unleash your inner artist. A talented user might make something like this:
 	
 	![Our first interactive application](img/first-interactive-application.png)
 	
-1. Congratulations! You just made your first interactive graphic application! With nothing more than just an `if` statement and 2 function calls.
+1. Congratulations! You just made your first interactive graphic application! With nothing more than just an `if` statement and 2 function calls. How did it work, though?
+
+	- As it turns out, `setup()` and `draw()` are two special functions for `p5.js`. `setup()` will run exactly once as soon as the application starts; `draw()`, in turn, will be called over and over unless explicitly stopped (e.g. with [`noLoop()`](https://p5js.org/reference/#/p5/noLoop)). There are other special functions that are called automatically, such as [`mouseMoved()`](https://p5js.org/reference/#/p5/mouseMoved). However, you should only call functions that draw shapes directly (e.g. `ellipse()`) inside the `draw()` function.
+	
+	- You should also admire the convenience of the boolean variable `mouseIsPressed`, which evaluates to `true` whenever the mouse is pressed (by default the left key) and `false` whenever it is not. We also used other automatically updated variables here, namely `mouseX` and `mouseY`.
+	
+	- Unsurprisingly, `ellipse()` draws an ellipse. Our `draw()` function, in turn, translates to "every time I am called, check if the mouse is currently pressed; if it is, draw an 80-by-80 ellipse centered at its current location."
+	
+1. 
 
 
 
