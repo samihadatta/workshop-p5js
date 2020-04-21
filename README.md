@@ -35,11 +35,11 @@ No downloading necessary! Told you - minimal setup.
 1. I know, I know: drawing circles is boring. Let's make the users draw them for us instead. Let's put the following in `sketch.js`.
 
     ```javascript =
-    const canvas_width = 1000;
-    const canvas_height = 500;
+    const CANVAS_WIDTH = 1000;
+    const CANVAS_HEIGHT = 500;
 
     function setup() {
-      createCanvas(canvas_width, canvas_height);
+      createCanvas(CANVAS_WIDTH , CANVAS_HEIGHT);
     }
 
     function draw() {
@@ -64,7 +64,7 @@ No downloading necessary! Told you - minimal setup.
 
 ### The Real Deal
 
-1. Now that you learned the basic layout and types of functions that constitute the majority of a `p5.js` application, it is time to build our masterpiece of the day - an interactive physics simulation (did I say "game?").
+1. Now that you have learned the basic layout and types of functions that constitute the majority of a `p5.js` application, it is time to build our masterpiece of the day - an interactive physics simulation (did I say "game?").
 
 1. First thing first, let us start with a clean slate.
 
@@ -82,7 +82,7 @@ No downloading necessary! Told you - minimal setup.
     }
     ```
     
-    Notice anything different? This time, we let the application begin with a canvas a tad smaller than the browser window - `windowWidth` and `windowHeight` are special variables just for this kind of shenanigan.
+    Notice anything different? This time, we let the application begin with a canvas a tad smaller than the browser window - `windowWidth` and `windowHeight` are special variables just for this kind of shenanigan. Question: can we do `let canvas_width = windowWidth - 100` outside `setup()`?
     
 1. Anyone here likes object-oriented programming? Anyone remembers the blobs from CS 10? Let's make a `Ball` class. Add it to your `sketch.js`!
 
@@ -98,7 +98,7 @@ No downloading necessary! Told you - minimal setup.
     }
     ```
     
-    You will be dealing with a bunch of them, so keep track of them in an array `let balls = [];`! Question: where should the declaration be?
+    You will be dealing with a bunch of them, so keep track of them in an array `let balls = [];`! Question: which scope should it be in?
     
     Now, add a mouse click event that creates a ball right where the user clicks our mouse. To do this, p5.js has a great function called `mouseClicked()` that is called every time a mouse click is detected. Add this function to your sketch.js.
     
@@ -109,7 +109,7 @@ No downloading necessary! Told you - minimal setup.
     }
     ```
     
-    To actually visualize the balls, change your draw() function to loop through the list of balls and draw each one.
+    To actually visualize the balls, change your `draw()` function to loop through the list of balls and draw each one.
     
     ```javascript =
     function draw() {
@@ -400,15 +400,15 @@ No downloading necessary! Told you - minimal setup.
     button = createButton('Reset');
     button.position(canvas_width-50, 0);
     button.mousePressed(reset_canvas);
-	  ```
-	  
+    ```
+      
     Then, create this function, which simply resets your ball array:
-	  
+    
     ```javascript = 
     function reset_canvas() {
       balls = [];
     }	
-	  ```
+    ```
 	
     Notice how `p5.js` not only handles the creation of the button as a `DOM` element, but can also position it and create an event listener. This is super convenient!
 
