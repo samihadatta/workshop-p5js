@@ -31,6 +31,7 @@ No downloading necessary! Told you - minimal setup.
 	  `Sketch.js` is where we will code all the `p5.js` magic.
 	
 1. Quick, draw a circle! Put `ellipse(50, 50, 80, 80);` in your `draw()` function. Go check out your web page. Beautiful, isn't it? That box around the circle  the `<canvas>` element. p5.js uses the `<canvas>` element to sketch to your heart's content.
+![Step 1](img/1.png)
 
 1. I know, I know: drawing circles is boring. Let's make the users draw them for us instead. Let's put the following in `sketch.js`.
 
@@ -162,6 +163,8 @@ No downloading necessary! Told you - minimal setup.
     
     </details>
     
+    ![Our first interactive application](img/2.png)
+    
     
     
 1. These plain white balls are pretty boring, so let's add some pop! `p5.js` has a nice way of handling color selection called a `colorPicker`. In your list of variables at the top, add a new line `let colorPicker;`
@@ -193,7 +196,7 @@ No downloading necessary! Told you - minimal setup.
     
     Cool! Now you should be able to make balls of various colors. Try it!
     
-    ![The big D](img/big-d.png)
+    ![Our first interactive application](img/3.png)
     
     (Did you notice a sneaky ball on the top left? What might be causing that?)
     
@@ -229,6 +232,7 @@ No downloading necessary! Told you - minimal setup.
     At this point, if the user creates a `ball`, it should drop to the ground. However, you'll notice that every frame seems to create a new ball, rather than changing the position of the original ball. To fix this, simply call [`clear()`](https://p5js.org/reference/#/p5/clear) at the very beginning of your `draw()` function.
 
     Great - now your balls bend to gravity's will.
+    ![Our first interactive application](img/4gif.gif)
     
 1. Next, let's handle colllisions, including `ball`-to-`ball` collision as well as `ball`-to-border collisions.
     
@@ -408,6 +412,7 @@ No downloading necessary! Told you - minimal setup.
     The `ball.building` boolean indicates if the `ball` is currently being created. This will grow and move the `ball` the user creates as they hold down the mouse button, and then release it as soon as they release the mouse button. These three mouse functions give you much more control over mouse input than the simple `mouseClick()` function we used earlier.
 
     Awesome! Now your physics simulation is complete. You should be able to create and drop various balls to see how they bounce off one another in all their hilarity.
+    ![Our first interactive application](img/5gif.gif)
 	
     To finish things off, let's create a simple button to refresh the page. Rather than creating the button in `index.html`, `p5.js` provides great methods to create these `DOM` elements. For buttons, we will be using `createButton()`.
 	
@@ -431,6 +436,7 @@ No downloading necessary! Told you - minimal setup.
 
     You are done! Hooray!
 
+![Our first interactive application](img/6gif.gif)
 ## Summary / What you Learned
 
 * [ ] Understand the basic functions and structure available for a `p5.js` application
