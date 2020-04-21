@@ -30,7 +30,7 @@ No downloading necessary! Told you - minimal setup.
 
 	  `Sketch.js` is where we will code all the `p5.js` magic.
 	
-1. Quick, draw a circle! Put `ellipse(50, 50, 80, 80);` in your `draw()` function. Go check out your web page. Beautiful, isn't it?
+1. Quick, draw a circle! Put `ellipse(50, 50, 80, 80);` in your `draw()` function. Go check out your web page. Beautiful, isn't it? That box around the circle  the `<canvas>` element. p5.js uses the `<canvas>` element to sketch to your heart's content.
 
 1. I know, I know: drawing circles is boring. Let's make the users draw them for us instead. Let's put the following in `sketch.js`.
 
@@ -79,6 +79,7 @@ No downloading necessary! Told you - minimal setup.
     }
 
     function draw() {
+    
     }
     ```
     
@@ -113,8 +114,7 @@ No downloading necessary! Told you - minimal setup.
     
     ```javascript =
     function draw() {
-	   background('#FBCEB1');
-       for(let i = 0; i < balls.length; i++) {
+      for(let i = 0; i < balls.length; i++) {
         let ball = balls[i];
         ball.draw_ball();
       }
@@ -138,7 +138,6 @@ No downloading necessary! Told you - minimal setup.
       }
 
       function draw() {
-      background('#FBCEB1');
         for(let i = 0; i < balls.length; i++) {
           let ball = balls[i];
           ball.draw_ball();
@@ -187,12 +186,16 @@ No downloading necessary! Told you - minimal setup.
       
       We want to set it to the color of the `colorPicker` when the mouse is clicked, so in the `mouseClicked()` change the Ball instantiation line to:
       ```
-      let ball = new Ball(createVector(mouseX, mouseY), rad, colorPicker.color());
+      let ball = new Ball(createVector(mouseX, mouseY), 80, colorPicker.color());
       ```
     
     </details>
     
-    Cool! Now you should be able to make balls of various colors. Try it! 
+    Cool! Now you should be able to make balls of various colors. Try it!
+    
+    ![The big D](img/big-d.png)
+    
+    (Did you notice a sneaky ball on the top left? What might be causing that?)
     
 1. Now, let's start implementing some simple physics!
 
@@ -223,7 +226,7 @@ No downloading necessary! Told you - minimal setup.
     
     The `deltaTime` variable is a handy variable provided by `p5.js` that gives us the time interval between the current call and the last call of `draw()` in milliseconds.
     
-    At this point, if the user creates a `ball`, it should drop to the ground. However, you'll notice that every frame seems to create a new ball, rather than changing the position of the original ball. To fix this, simply call [`clear()`](https://p5js.org/reference/#/p5/clear) at the very beginning of your `draw()` function, before `background()` is called. Try commenting out `clear()`. The program should work just fine, as `background()` acts as a pseudo-clear(). However, it makes it clearer (no pun intended) to explicitly call the `clear()`.
+    At this point, if the user creates a `ball`, it should drop to the ground. However, you'll notice that every frame seems to create a new ball, rather than changing the position of the original ball. To fix this, simply call [`clear()`](https://p5js.org/reference/#/p5/clear) at the very beginning of your `draw()` function.
 
     Great - now your balls bend to gravity's will.
     
