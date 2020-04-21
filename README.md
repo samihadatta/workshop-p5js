@@ -10,7 +10,7 @@ This tutorial will first teach you the basics of `p5.js`, and then guide you thr
 
 ## Setup
 
-No downloading necessary! Told you - minimal setup.
+Clone this repository and cd into it! This will provide the basic boilerplate.
 
 ## Step by Step
 
