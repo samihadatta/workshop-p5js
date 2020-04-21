@@ -450,6 +450,8 @@ No downloading necessary! Told you - minimal setup.
 
 
 ## Resources
+[The solutions repo is here](https://github.com/dartmouth-cs52-20S/workshop-solution-p5js)
+
 [p5.js Get Started](https://p5js.org/get-started/)
 
 [p5.js Online Editor](https://editor.p5js.org/)
