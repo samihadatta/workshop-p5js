@@ -436,7 +436,7 @@ No downloading necessary! Told you - minimal setup.
 
     You are done! Hooray!
 
-![Our first interactive application](img/6gif.gif)
+    ![Our first interactive application](img/6gif.gif)
 ## Summary / What you Learned
 
 * [ ] Understand the basic functions and structure available for a `p5.js` application
