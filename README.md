@@ -123,40 +123,47 @@ No downloading necessary! Told you - minimal setup.
     
     At this point, your `sketch.js` should look this.
 		
-    ```javascript =
-    let canvas_width; 
-    let canvas_height; 
-    let balls = [];
+    <details>
+      <summary>Click to expand</summary>
+    
+      ```javascript =
+      let canvas_width; 
+      let canvas_height; 
+      let balls = [];
 
-    function setup() {
-      canvas_width = windowWidth-100;
-      canvas_height = windowHeight-100;
-      createCanvas(canvas_width, canvas_height);
-    }
-
-    function draw() {
-	  background('#FBCEB1');
-      for(let i = 0; i < balls.length; i++) {
-        let ball = balls[i];
-        ball.draw_ball();
+      function setup() {
+        canvas_width = windowWidth-100;
+        canvas_height = windowHeight-100;
+        createCanvas(canvas_width, canvas_height);
       }
-    }
 
-    function mouseClicked() {
-      let ball = new Ball(createVector(mouseX, mouseY), 80);
-      balls.push(ball);
-    }
+      function draw() {
+      background('#FBCEB1');
+        for(let i = 0; i < balls.length; i++) {
+          let ball = balls[i];
+          ball.draw_ball();
+        }
+      }
 
-    class Ball {
-      constructor(pos, rad) {
-        this.pos = pos;
-        this.rad = rad;
+      function mouseClicked() {
+        let ball = new Ball(createVector(mouseX, mouseY), 80);
+        balls.push(ball);
       }
-      draw_ball() {
-        ellipse(this.pos.x, this.pos.y, 2*this.rad, 2*this.rad);
+
+      class Ball {
+        constructor(pos, rad) {
+          this.pos = pos;
+          this.rad = rad;
+        }
+        draw_ball() {
+          ellipse(this.pos.x, this.pos.y, 2*this.rad, 2*this.rad);
+        }
       }
-    }
-    ```
+      ```
+    
+    </details>
+    
+    
     
 1. These plain white balls are pretty boring, so let's add some pop! `p5.js` has a nice way of handling color selection called a `colorPicker`. In your list of variables at the top, add a new line `let colorPicker;`
 
@@ -258,62 +265,69 @@ No downloading necessary! Told you - minimal setup.
     
     Next, let's handle `ball`-to-`ball` collisions. This involves some physics knowledge, so the code for it is provided below. Notice the extensive usage of `Vector`, and how nicely `p5.js` handles `Vector` arithmetic.
     Change your `check_ball_collisions()` function to the following:
-    ```javascript = 
-    function check_ball_collisions() {
-      for(let i = 0; i < balls.length; i++) {
-        let ball1 = balls[i];
-        for(let j = i+1; j < balls.length; j++) {
-          let ball2 = balls[j];
-          // Two balls collide if the distance between them is less than the sum of the radii
-          let dist = ball1.pos.dist(ball2.pos);
-          if(dist < ball1.rad + ball2.rad) {
-          // If balls overlap, correct for the overlap
-            let desired_dist = ball1.rad + ball2.rad;
-            let error = desired_dist - dist;
-            let ball1_fix = (ball1.rad/desired_dist) * error;
-            let ball2_fix = (ball2.rad/desired_dist) * error;
+    
+    <details>
+      <summary>Click to expand</summary>
 
-            let v = p5.Vector.sub(ball1.pos, ball2.pos);
+      ```javascript = 
+      function check_ball_collisions() {
+        for(let i = 0; i < balls.length; i++) {
+          let ball1 = balls[i];
+          for(let j = i+1; j < balls.length; j++) {
+            let ball2 = balls[j];
+            // Two balls collide if the distance between them is less than the sum of the radii
+            let dist = ball1.pos.dist(ball2.pos);
+            if(dist < ball1.rad + ball2.rad) {
+            // If balls overlap, correct for the overlap
+              let desired_dist = ball1.rad + ball2.rad;
+              let error = desired_dist - dist;
+              let ball1_fix = (ball1.rad/desired_dist) * error;
+              let ball2_fix = (ball2.rad/desired_dist) * error;
 
-            let ball1_vec = p5.Vector.mult(v, ball1_fix/dist);
-            let ball2_vec = p5.Vector.mult(v, ball2_fix/dist);
+              let v = p5.Vector.sub(ball1.pos, ball2.pos);
 
-            ball1.pos.add(ball1_vec);
-            ball2.pos.sub(ball2_vec);
+              let ball1_vec = p5.Vector.mult(v, ball1_fix/dist);
+              let ball2_vec = p5.Vector.mult(v, ball2_fix/dist);
 
-            // Calculate the new velocities of each ball based on simplified 2D physics
-            let a1 = p5.Vector.sub(ball1.vel, ball2.vel);
-            let b1 = p5.Vector.sub(ball1.pos, ball2.pos);
-            let c1 = b1.magSq();
-            let d1 = p5.Vector.dot(a1, b1);
-            let vel_1 = p5.Vector.sub(ball1.vel, p5.Vector.mult(b1, d1/c1));
-            
-            let a2 = p5.Vector.sub(ball2.vel, ball1.vel);
-            let b2 = p5.Vector.sub(ball2.pos, ball1.pos);
-            let c2 = b2.magSq();
-            let d2 = p5.Vector.dot(a2, b2);
-            let vel_2 = p5.Vector.sub(ball2.vel, p5.Vector.mult(b2, d2/c2));
+              ball1.pos.add(ball1_vec);
+              ball2.pos.sub(ball2_vec);
 
-            // Set the new velocities for each ball
-            ball1.vel = vel_1;
-            ball2.vel = vel_2;
+              // Calculate the new velocities of each ball based on simplified 2D physics
+              let a1 = p5.Vector.sub(ball1.vel, ball2.vel);
+              let b1 = p5.Vector.sub(ball1.pos, ball2.pos);
+              let c1 = b1.magSq();
+              let d1 = p5.Vector.dot(a1, b1);
+              let vel_1 = p5.Vector.sub(ball1.vel, p5.Vector.mult(b1, d1/c1));
+
+              let a2 = p5.Vector.sub(ball2.vel, ball1.vel);
+              let b2 = p5.Vector.sub(ball2.pos, ball1.pos);
+              let c2 = b2.magSq();
+              let d2 = p5.Vector.dot(a2, b2);
+              let vel_2 = p5.Vector.sub(ball2.vel, p5.Vector.mult(b2, d2/c2));
+
+              // Set the new velocities for each ball
+              ball1.vel = vel_1;
+              ball2.vel = vel_2;
+            }
           }
-        }
 
-        // For each ball, also check for collisions against the floor and the walls
-        // The -0.8 multiplier is to dampen the speed of the ball when colliding with walls or the floor
-        if(ball1.pos.y > canvas_height - ball1.rad) {
+          // For each ball, also check for collisions against the floor and the walls
+          // The -0.8 multiplier is to dampen the speed of the ball when colliding with walls or the floor
+          if(ball1.pos.y > canvas_height - ball1.rad) {
 
-          // This if-statement prevents infinite bouncing
-          if(abs(ball1.vel.y) < 1.5) {
-          	ball1.vel.y = 0;
+            // This if-statement prevents infinite bouncing
+            if(abs(ball1.vel.y) < 1.5) {
+              ball1.vel.y = 0;
+            }
+            ball1.vel.y *= -0.8;
+            ball1.pos.y = canvas_height - ball1.rad; // Correct overlap
           }
-          ball1.vel.y *= -0.8;
-          ball1.pos.y = canvas_height - ball1.rad; // Correct overlap
         }
       }
-    }
-    ```
+      ```
+      
+    </details>
+    
 
     Now your balls should be bouncing off one another! Again, note the use of `Vector` functions such as
     * `dot()`
@@ -400,15 +414,15 @@ No downloading necessary! Told you - minimal setup.
     button = createButton('Reset');
     button.position(canvas_width-50, 0);
     button.mousePressed(reset_canvas);
-    ```
-      
+	  ```
+	  
     Then, create this function, which simply resets your ball array:
-    
+	  
     ```javascript = 
     function reset_canvas() {
       balls = [];
     }	
-    ```
+	  ```
 	
     Notice how `p5.js` not only handles the creation of the button as a `DOM` element, but can also position it and create an event listener. This is super convenient!
 
