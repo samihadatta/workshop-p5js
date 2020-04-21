@@ -207,7 +207,7 @@ No downloading necessary! Told you - minimal setup.
     }
     ```
     
-    Next, in your `draw()` function, add the following lines after you draw the `ball`.
+    Next, in your `draw()` function, add the following lines after where you draw the `ball`.
     
     ```javascript =
     ball.pos.sub(ball.vel);
