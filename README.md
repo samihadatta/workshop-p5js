@@ -202,7 +202,7 @@ No downloading necessary! Told you - minimal setup.
     
 1. Now, let's start implementing some simple physics!
 
-    We will use simplified 2D physics concepts to apply gravitational and collision forces to the balls. `p5.js` has a great implementation of [`Vectors`](https://p5js.org/reference/#/p5.Vector) that make this process very simiple.
+    We will use simplified 2D physics concepts to apply gravitational and collision forces to the balls. `p5.js` has a great implementation of [`Vectors`](https://p5js.org/reference/#/p5.Vector) that make this process very simple. We made our own implementation of the 2D physics, but there are various libraries you can look into that can handle all of these calculations for you (https://brm.io/matter-js/ is a really powerful library that might help).
     
     What's a `Vector`, you ask? It is simply a `p5.js` class for representing a, well, vector! You know, the ones from physics? An object of this class stores the components of a physics vector in its instance variables (e.g. `Vector.x`) and grants us access to convenient methods for doing vector-based calculation, such as [`Vector.sub()`](https://p5js.org/reference/#/p5.Vector/sub).
     
