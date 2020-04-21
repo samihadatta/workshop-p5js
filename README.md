@@ -428,6 +428,8 @@ No downloading necessary! Told you - minimal setup.
 
 ## Resources
 [p5.js Get Started](https://p5js.org/get-started/)
+
 [p5.js Online Editor](https://editor.p5js.org/)
+
 [2D Physics Formulas](https://opentextbc.ca/physicstestbook2/chapter/collisions-of-point-masses-in-two-dimensions/)
 
