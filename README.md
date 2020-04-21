@@ -10,7 +10,7 @@ This tutorial will first teach you the basics of `p5.js`, and then guide you thr
 
 ## Setup
 
-Clone this repository and cd into it! This will provide the basic boilerplate.
+No downloading necessary! Told you - minimal setup.
 
 ## Step by Step
 
@@ -18,7 +18,7 @@ Clone this repository and cd into it! This will provide the basic boilerplate.
 
 1. Create `sketch.js` with the two blank functions as follows:
 
-    ```javascript=
+    ```javascript =
     function setup() {
 
     }
@@ -34,7 +34,7 @@ Clone this repository and cd into it! This will provide the basic boilerplate.
 
 1. I know, I know: drawing circles is boring. Let's make the users draw them for us instead. Let's put the following in `sketch.js`.
 
-    ```javascript=
+    ```javascript =
     const canvas_width = 1000;
     const canvas_height = 500;
 
@@ -68,7 +68,7 @@ Clone this repository and cd into it! This will provide the basic boilerplate.
 
 1. First thing first, let us start with a clean slate.
 
-    ```javascript=
+    ```javascript =
     let canvas_width; 
     let canvas_height; 
     
@@ -86,7 +86,7 @@ Clone this repository and cd into it! This will provide the basic boilerplate.
     
 1. Anyone here likes object-oriented programming? Anyone remembers the blobs from CS 10? Let's make a `Ball` class. Add it to your `sketch.js`!
 
-    ```javascript=
+    ```javascript =
     class Ball {
       constructor(pos, rad) {
         this.pos = pos;
@@ -111,7 +111,7 @@ Clone this repository and cd into it! This will provide the basic boilerplate.
     
     To actually visualize the balls, change your draw() function to loop through the list of balls and draw each one.
     
-    ```javascript=
+    ```javascript =
     function draw() {
 	   background('#FBCEB1');
        for(let i = 0; i < balls.length; i++) {
@@ -123,7 +123,7 @@ Clone this repository and cd into it! This will provide the basic boilerplate.
     
     At this point, your `sketch.js` should look this.
 		
-    ```javascript=
+    ```javascript =
     let canvas_width; 
     let canvas_height; 
     let balls = [];
@@ -162,7 +162,7 @@ Clone this repository and cd into it! This will provide the basic boilerplate.
 
     In your `setup()`, instantiate the color picker by calling:
     
-    ```javascript=
+    ```javascript =
     colorPicker = createColorPicker('#FFFFFF');
     colorPicker.position(0, 0);
     ```
@@ -209,7 +209,7 @@ Clone this repository and cd into it! This will provide the basic boilerplate.
     
     Next, in your `draw()` function, add the following lines after you draw the `ball`.
     
-    ```javascript=
+    ```javascript =
     ball.pos.sub(ball.vel);
     ball.vel.y += ball.acc*deltaTime/1000;
     ```
@@ -325,7 +325,7 @@ Clone this repository and cd into it! This will provide the basic boilerplate.
     
     Bouncing the balls off the walls of the canvas uses the same exact principles as bouncing them off the floor. In your `check_ball_collisions()`, change the `if` statement checking for floor collisions to the following.
     
-    ```javascript=
+    ```javascript =
     if(ball1.pos.y > canvas_height - ball1.rad) {
 
       // This if-statement prevents infinite bouncing
@@ -348,7 +348,7 @@ Clone this repository and cd into it! This will provide the basic boilerplate.
 	
 	  Replace your `mouseClick()` function with the following 3 functions:
 	
-    ```javascript=
+    ```javascript =
     function mousePressed() {
       if(mouseX > 0 && mouseX < canvas_width && mouseY > 0 && mouseY < canvas_height) {
         let rad = 10;
@@ -380,7 +380,7 @@ Clone this repository and cd into it! This will provide the basic boilerplate.
     
 	  Next, in `draw()` after where you update the `pos` and `vel` of the `ball`, add the following lines:
 
-    ```javascript=
+    ```javascript =
     if(ball.building) {
       ball.rad += 0.5;
     }
